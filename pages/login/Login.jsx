@@ -17,60 +17,60 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    if (!email || !password) {
-      Alert.alert("Error", "Please enter both email and password.");
-      return;
+  // const handleLogin = () => {
+  //   if (!email || !password) {
+  //     Alert.alert("Error", "Please enter both email and password.");
+  //     return;
+  //   }
+
+  //   // Show success alert with link option
+  //   Alert.alert(
+  //     "Success",
+  //     "Logged in successfully.",
+  //     [
+  //       {
+  //         text: "Cancel",
+  //         onPress: () => console.log("User canceled the action"),
+  //         style: "cancel",
+  //       },
+  //       {
+  //         text: "Go to BuyMeACoffee",
+  //         onPress: async () => {
+  //           try {
+  //             // Open the link in the default browser
+  //             await Linking.openURL("https://buymeacoffee.com/sangammukh6");
+  //           } catch (err) {
+  //             console.error("Failed to open link", err);
+  //           }
+  //         },
+  //       },
+  //     ],
+  //     { cancelable: true }
+  //   );
+
+  //   console.log("Login successful");
+  // };
+  const handleLogin =async () => {
+    try {
+        if (!email || !password) {
+          Alert.alert("Error", "Please enter both email and password.");
+          return;
+        }
+      const response = await login(email, password);
+      if(response.success){
+        Alert.alert("Success", "Logged in successfully.");
+         console.log("Login successful:", response);
+      }
+      else{
+        Alert.alert("Error", "Login failed. Please check your credentials.");
+        console.log("Login failed:", response);
+      }
+    } catch (error) {
+      console.log(error);
+       console.error("Login error:", error);
+       Alert.alert("Error", "An error occurred. Please try again later.");
     }
-
-    // Show success alert with link option
-    Alert.alert(
-      "Success",
-      "Logged in successfully.",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("User canceled the action"),
-          style: "cancel",
-        },
-        {
-          text: "Go to BuyMeACoffee",
-          onPress: async () => {
-            try {
-              // Open the link in the default browser
-              await Linking.openURL("https://buymeacoffee.com/sangammukh6");
-            } catch (err) {
-              console.error("Failed to open link", err);
-            }
-          },
-        },
-      ],
-      { cancelable: true }
-    );
-
-    console.log("Login successful");
   };
-//   const handleLogin =async () => {
-//     try {
-//         if (!email || !password) {
-//           Alert.alert("Error", "Please enter both email and password.");
-//           return;
-//         }
-//       const response = await login(email, password);
-//       if(response.success){
-//         Alert.alert("Success", "Logged in successfully.");
-//          console.log("Login successful:", response);
-//       }
-//       else{
-//         Alert.alert("Error", "Login failed. Please check your credentials.");
-//         console.log("Login failed:", response);
-//       }
-//     } catch (error) {
-//       console.log(error);
-//        console.error("Login error:", error);
-//        Alert.alert("Error", "An error occurred. Please try again later.");
-//     }
-//   };
 
   return (
     <View style={styles.container}>
