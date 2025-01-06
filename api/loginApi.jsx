@@ -1,8 +1,10 @@
 import axios from "axios";
+
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
 export const login = async (email, password) => {
     try {
         const response = await axios.post(
-          "https://dev-api.iconesequipments.org/auth/login",
+          `${API_URL}/auth/login`,
           {
             email,
             password,

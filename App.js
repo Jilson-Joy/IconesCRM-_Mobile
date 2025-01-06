@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Login from './pages/login/Login';
 
+import Login from './pages/login/Login';
+import WebViewPage from './pages/webpage/WebViewPage';
 export default function App() {
   return (
     <View style={styles.container}>
